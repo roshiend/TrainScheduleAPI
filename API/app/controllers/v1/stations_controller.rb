@@ -26,6 +26,7 @@ class V1::StationsController < ApplicationController
   
   private
     def get_station
+      @station = Station.find(params[:id])
     end
 
     def station_params
