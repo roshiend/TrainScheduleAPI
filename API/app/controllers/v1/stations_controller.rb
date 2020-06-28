@@ -8,10 +8,11 @@ class V1::StationsController < ApplicationController
   def create
     @station = Station.new(station_params)
     if @station.save
-      render json: @stations, status: :created, location: v1_stations_path
-    else
+      render json: @station, status: :created, location: v1_stations_path(@station)
+   else
       render json: @station.errors, status: :unprocessable_entity
     end
+
   end
 
   def show
@@ -28,7 +29,6 @@ class V1::StationsController < ApplicationController
     end
 
     def station_params
-       params.permit(:station_name, :station_code)
-      #params.require(:station).permit(:station_name, :station_code,:authenticity_token, :commit)
+     params.require(:station).permit(:station_name, :station_code)
     end
 end
