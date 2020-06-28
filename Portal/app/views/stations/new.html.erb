@@ -1,0 +1,29 @@
+<form action="http://localhost:3001/v1/stations" method ="post" id= "station-form">
+	<div class="col-md-12"> 
+	  <div class="card card-primary card-outline col-md-12">
+	    <div class="card-header">
+	      <h5 class="card-title m-0">Create a Station</h5>
+	    </div>
+	    <div class="card-body">
+	      <div class="form-group ">
+	        <label for="fname" class= "col-md-12 col-form-label">Station name:</label>
+	        <div class="col-md-12">
+	        	<input type="text" id="fname" name="station[station_name]" class= "form-control" placeholder="Station name..." required>
+	        </div>
+	      </div>
+	      <div class="form-group ">
+	        <label for="fname" class= "col-md-12 col-form-label">Station code:</label>
+	        <div class="col-md-12">
+	        	<input type="text" id="fname" name="station[station_code]" class= "form-control" placeholder="Station code..." required>
+	        </div>
+	      </div>
+	      <div class="form-group ">
+	        <div class="col-md-12">
+	        	<button class="btn btn-primary station-form-submit">Submit</button>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+</form>
+
