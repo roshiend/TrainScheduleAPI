@@ -1,0 +1,80 @@
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    
+      <div class="text-center">
+        <%=link_to root_path do%>
+          <%#=image_tag('logo.svg',:width =>"150px")%>
+        <%end%>
+      </div>
+      
+    
+
+    <!-- Sidebar -->
+    <div class="sidebar os-host os-theme-light os-host-overflow os-host-overflow-y os-host-resize-disabled os-host-scrollbar-horizontal-hidden os-host-transition"><div class="os-resize-observer-host"><div class="os-resize-observer observed" style="left: 0px; right: auto;"></div></div><div class="os-size-auto-observer" style="height: calc(100% + 1px); float: left;"><div class="os-resize-observer observed"></div></div><div class="os-content-glue" style="margin: 0px -8px; width: 249px; height: 542px;"></div><div class="os-padding"><div class="os-viewport os-viewport-native-scrollbars-invisible" style="overflow-y: scroll; right: 0px; bottom: 0px;"><div class="os-content" style="padding: 0px 8px; height: 100%; width: 100%;">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <span><%=image_tag('user_image.jfif', class: "user_image_round")%>  User Name </span>
+        </div>
+        
+      </div>
+
+      <!-- Sidebar Menu -->
+<%#Catgories%>
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column " data-widget="treeview" role="menu" data-accordion="false"  >
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="fas fa-clipboard-list nav-icon"></i>
+              <p>
+                Stations
+                <i class="fas fa-plus-circle right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <%#=link_to backend_categories_path do%>
+                <li class="nav-item nav-tem-sub" >
+                  All Stations
+                </li>
+              <%#end%>
+              <%#=link_to new_backend_category_path do%>
+                <!-- <li class="nav-item nav-tem-sub">
+                  Create Category
+                </li> -->
+              <%#end%>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+<%#sub Catgories%>
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column " data-widget="treeview" role="menu" data-accordion="false"  >
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="fas fa-train nav-icon"></i>
+              <p>
+                Trains
+                <i class="fas fa-plus-circle right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <%#=link_to backend_sub_categories_path do%>
+                <li class="nav-item nav-tem-sub" >
+                  All Trains
+                </li>
+              <%#end%>
+              <%#=link_to new_backend_sub_category_path do%>
+                <!-- <li class="nav-item nav-tem-sub">
+                  Create Sub category
+                </li> -->
+              <%#end%>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+
+      
+      <!-- /.sidebar-menu -->
+    </div></div></div><div class="os-scrollbar os-scrollbar-horizontal os-scrollbar-unusable os-scrollbar-auto-hidden"><div class="os-scrollbar-track"><div class="os-scrollbar-handle" style="width: 100%; transform: translate(0px, 0px);"></div></div></div><div class="os-scrollbar os-scrollbar-vertical os-scrollbar-auto-hidden"><div class="os-scrollbar-track"><div class="os-scrollbar-handle" style="height: 47.6948%; transform: translate(0px, 0px);"></div></div></div><div class="os-scrollbar-corner"></div></div>
+    <!-- /.sidebar -->
+  </aside>
