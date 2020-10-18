@@ -1,7 +1,4 @@
-class Station
+class Station<ApplicationRecord
   
-
-  
-
 end
 

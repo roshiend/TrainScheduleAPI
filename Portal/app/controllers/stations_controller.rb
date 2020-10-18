@@ -1,10 +1,11 @@
 class StationsController < ApplicationController
-  
+  require 'will_paginate/array'
   require 'station'
   def index
     all_stations = TrainStation.new()
     #displying all stations 
-    @stations = all_stations.stations
+    @stations = all_stations.stations.paginate(page: params[:page],per_page: 10)
+    
   end
 
   def new
@@ -22,10 +23,24 @@ class StationsController < ApplicationController
       redirect_to stations_path
     else
       render  :new
+      puts "----------redirection upon failure----------------"
+
     end
   end
 
-    
+  #CSV upload Path
+  def import
+   station = TrainStation.new()
+   if station.import(params[:file]) == :failed 
+    render  :new
+     puts "----------CSV operation not success----------------"
+   else
+    redirect_to stations_path
+     
+   end
+  end
+
+
    
   
 
