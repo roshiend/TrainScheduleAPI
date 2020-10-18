@@ -1,2 +1,18 @@
-<h1>Stations#index</h1>
-<p>Find me in app/views/stations/index.html.erb</p>
+<table class="table table-dark">
+  <thead>
+    <tr>
+      <th scope="col">Station Name</th>
+      <th scope="col">Station Code</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%@stations.each do |s, index|%>
+      
+      <td><%=s["station_name"]%></td>
+      <td><%=s["station_code"]%></td>
+      </tr>
+    <%end%>
+    
+  
+  </tbody>
+</table>

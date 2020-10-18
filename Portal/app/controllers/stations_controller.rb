@@ -1,20 +1,33 @@
 class StationsController < ApplicationController
+  
+  require 'station'
   def index
-    @stations = Station.new.stations
+    all_stations = TrainStation.new()
+    #displying all stations 
+    @stations = all_stations.stations
   end
 
   def new
-    @station = Station.new
+    @station = TrainStation.new
+
   end
 
   def create
-    @station = Station.new(station_params)
-    if@station.save
+    station = TrainStation.new()
+
+    response = station.createStation(params[:station_name],params[:station_code])
+    
+    #redirect to stations_path(index) if operation perfromed and params saved to api
+    if response.success?
       redirect_to stations_path
     else
-      render :new
+      render  :new
     end
   end
+
+    
+   
+  
 
   def show
 
@@ -28,8 +41,5 @@ class StationsController < ApplicationController
 
   def destroy
   end
-  private
-    def station_params
-      params.require(:station).permit(:station_name,:station_code)
-    end
+  
 end

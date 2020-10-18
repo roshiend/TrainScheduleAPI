@@ -1,21 +1,35 @@
-<form action="http://localhost:3001/v1/stations" method ="post" id= "station-form">
+
+<%= form_tag stations_path, method: "post", id: "station-form" do %>
 	<div class="col-md-12"> 
 	  <div class="card card-primary card-outline col-md-12">
 	    <div class="card-header">
 	      <h5 class="card-title m-0">Create a Station</h5>
+	      <div class="upload-btn-wrapper float-right">
+	      	  <i class="fas fa-file-csv btn-primary btn-csv"></i>
+			  <!-- <button class="btn">Upload a file</button> -->
+			  <input type="file" />
+		  </div>
 	    </div>
 	    <div class="card-body">
 	      <div class="form-group ">
 	        <label for="fname" class= "col-md-12 col-form-label">Station name:</label>
 	        <div class="col-md-12">
-	        	<input type="text" id="fname" name="station[station_name]" class= "form-control" placeholder="Station name..." required>
+	        	<%=text_field_tag :station_name, nil,class: "form-control", :id => "fname",:placeholder =>"Station name...",required: true%>
+	        	
 	        </div>
+	        <div class="invalid-feedback">
+        		Please provide a station name.
+      		</div>
 	      </div>
 	      <div class="form-group ">
 	        <label for="fname" class= "col-md-12 col-form-label">Station code:</label>
 	        <div class="col-md-12">
-	        	<input type="text" id="fname" name="station[station_code]" class= "form-control" placeholder="Station code..." required>
+	        	
+	        	<%=text_field_tag :station_code, nil,class: "form-control", :id => "fname",:placeholder =>"Station name...",required: true%>
 	        </div>
+	        <div class="invalid-feedback">
+        		Please provide a station code.
+      		</div>
 	      </div>
 	      <div class="form-group ">
 	        <div class="col-md-12">
@@ -25,5 +39,5 @@
 	    </div>
 	  </div>
 	</div>
-</form>
+<%end%>
 
