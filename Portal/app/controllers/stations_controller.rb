@@ -1,84 +1,60 @@
 class StationsController < ApplicationController
   require 'station'
   require 'will_paginate/array'
-  before_action :initialize_train_station,only: [:index,:new,:create,:edit,:show,:update,:delete,:import]
-  
+  before_action :find_train_station,only: [:show,:edit,:destroy]
   
   def index
-    station = TrainStation.new()
     #displying all stations 
-    @stations = station.stations.paginate(page: params[:page],per_page: 10)
-    
+    @stations = TrainStation.new.all.paginate(page: params[:page],per_page: 10)
   end
 
   def new
-    @station = TrainStation.new
-
+    @station  = TrainStation.new()
   end
 
   def create
-    station = TrainStation.new()
-
-    response = station.createStation(params[:station_name],params[:station_code])
-    
+    @station = TrainStation.new.create(params[:station_name],params[:station_code])
     #redirect to stations_path(index) if operation perfromed and params saved to api
-    if response.success?
+    if @station.success?
       redirect_to stations_path
     else
       render  :new
-      puts "----------redirection upon failure----------------"
+      puts "redirection upon failure ---------------->>"
 
     end
   end
 
   #CSV upload Path
   def import
-   station = TrainStation.new()
-   if station.import(params[:file]) == :failed 
-    render  :new
-     puts "----------CSV operation not success----------------"
-   else
-    redirect_to stations_path
-     
-   end
+    if TrainStation.new.import(params[:file]) == :failed 
+      render  :new
+      puts "CSV operation not success---------------->>"
+    else
+      redirect_to stations_path
+    end
   end
 
-
-   
-  
-
   def show
-    station = TrainStation.new()
-    @station = station.find_by_id_or_slug(params[:id])
-    if @station.success?
-      puts @response.inspect
-       
-    else
+    unless  @station.success?
       render :new
-      puts "----------redirection upon failure----------------"
+      puts "redirection upon failure---------------->>"
     end
-
   end
 
   def edit
-    station = TrainStation.new()
-    @station = station.find_by_id_or_slug(params[:id])
-   
     unless @station.success?
      redirect_to new_station_path
-     puts "----------Cant find page or render !----------------"
+     puts "Cant find page or render !---------------->>"
     end
   end
 
   def update
-    station = TrainStation.new()
-    response = station.edit_or_update(prams[:station_name],params[:station_code])
-    if response.success?
+    @station = TrainStation.new.update(params[:station_name],params[:station_code])
+    if @station.success?
       redirect_to stations_path
-
     else
       render :new
-      puts "----------redirection upon failure----------------"
+      puts "redirection upon failure---------------->"
     end
   end
 
@@ -87,8 +63,11 @@ class StationsController < ApplicationController
 
   private 
 
-   def initialize_train_station
-     station = TrainStation.new()
+   def find_train_station
+     @station = TrainStation.new.find(params[:id])
    end
+
+
+   
   
 end

@@ -1,5 +1,5 @@
 
-<%= form_tag stations_path, method: "put", id: "station-form" do %>
+<%= form_tag stations_path, method: "post", id: "station-form" do %>
 	<div class="col-md-12"> 
 	  <div class="card card-primary card-outline col-md-12">
 	    <div class="card-header">
@@ -10,7 +10,7 @@
 	      <div class="form-group ">
 	        <label for="fname" class= "col-md-12 col-form-label">Station name:</label>
 	        <div class="col-md-12">
-	        	<%=text_field_tag :station_name, @response.inspect,class: "form-control", :id => "fname",:placeholder =>"Station name...",required: true%>
+	        	<%=text_field_tag :station_name, @station["station_name"],class: "form-control", :id => "fname",:placeholder =>"Station name...",required: true%>
 	        	
 	        </div>
 	        <div class="invalid-feedback">
@@ -21,7 +21,7 @@
 	        <label for="fname" class= "col-md-12 col-form-label">Station code:</label>
 	        <div class="col-md-12">
 	        	
-	        	<%=text_field_tag :station_code, nil,class: "form-control", :id => "fname",:placeholder =>"Station name...",required: true%>
+	        	<%=text_field_tag :station_code, @station["station_code"],class: "form-control", :id => "fname",:placeholder =>"Station name...",required: true%>
 	        </div>
 	        <div class="invalid-feedback">
         		Please provide a station code.
