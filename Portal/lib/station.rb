@@ -42,6 +42,24 @@ class TrainStation
 
    end
   end
+  
+  def find_by_id_or_slug(id)
+    
+   self.class.get("/v1/stations/#{id}")
+   
+
+  end
+
+  def edit_or_update(id)
+    self.class.post("/v1/stations/[id]")
+
+  end
+
+  def delete_and_remove(id)
+    self.class.delete("/v1/stations/#{id}")
+  end
+
+
 
 
 

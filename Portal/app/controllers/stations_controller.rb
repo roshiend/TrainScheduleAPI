@@ -1,10 +1,13 @@
 class StationsController < ApplicationController
-  require 'will_paginate/array'
   require 'station'
+  require 'will_paginate/array'
+  before_action :initialize_train_station,only: [:index,:new,:create,:edit,:show,:update,:delete,:import]
+  
+  
   def index
-    all_stations = TrainStation.new()
+    station = TrainStation.new()
     #displying all stations 
-    @stations = all_stations.stations.paginate(page: params[:page],per_page: 10)
+    @stations = station.stations.paginate(page: params[:page],per_page: 10)
     
   end
 
@@ -45,16 +48,47 @@ class StationsController < ApplicationController
   
 
   def show
+    station = TrainStation.new()
+    @station = station.find_by_id_or_slug(params[:id])
+    if @station.success?
+      puts @response.inspect
+       
+    else
+      render :new
+      puts "----------redirection upon failure----------------"
+    end
 
   end
 
   def edit
+    station = TrainStation.new()
+    @station = station.find_by_id_or_slug(params[:id])
+   
+    unless @station.success?
+     redirect_to new_station_path
+     puts "----------Cant find page or render !----------------"
+    end
   end
 
   def update
+    station = TrainStation.new()
+    response = station.edit_or_update(prams[:station_name],params[:station_code])
+    if response.success?
+      redirect_to stations_path
+
+    else
+      render :new
+      puts "----------redirection upon failure----------------"
+    end
   end
 
   def destroy
   end
+
+  private 
+
+   def initialize_train_station
+     station = TrainStation.new()
+   end
   
 end

@@ -1,25 +1,49 @@
+<div class="from-actions">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="new-to-create float-right">
+        <%= form_tag import_stations_path, id: "station-form",  multipart: true do %>
+          <label for="upload-photo" class ="upload"><span><i class="fas fa-arrow-alt-circle-up"></i> Import</span></label>
+          <div class= text-left>
+            <%=file_field_tag :file, :onchange => "this.form.submit()", :id  => "upload-photo" %>
+          </div>
+        <%end%>
+        <%=link_to  new_station_path do %>
+          <h5 class= "upload upload-create"><span><i class="fas fa-clipboard-list nav-icon"></i>  New Station</span></h5>
+        <%end%>
+       
+      </div>
+    </div>
 
-<div class="import-create-bar text-right">
-  <%= form_tag import_stations_path, id: "station-form",  multipart: true do %>
-    <%=file_field_tag :file%>
-    <%=submit_tag "upload"%>
-  <%end%>
+  </div>
 </div>
+<br>
 
 <%if @stations.any?%>
 
   <table class="table table-dark table-striped">
     <thead>
       <tr>
-        <th scope="col">STATION NAME</th>
-        <th scope="col">STATION CODE</th>
+        <th style="width:20%">
+          <input type="checkbox" id="selectAll" value="selectAll">
+          <%=submit_tag "Delete All", class: "btn btn-danger btn-sm index-dele-submit"%>
+        </th>
+        <th style="width:10%">ID</th>
+        <th style="width:40%">STATION NAME</th>
+        <th style="width:30%">STATION CODE</th>
       </tr>
     </thead>
     <tbody>
       <%@stations.each do |s, index|%>
         <tr>
-          <td><%=s["station_name"]%></td>
-          <td><%=s["station_code"]%></td>
+          <td><%=check_box_tag "station_ids[]", s["id"]%></td>
+          <td ><%=s["id"]%></td>
+          <td ><%=link_to station_path(s["id"]) do%> 
+                <%=s["station_name"]%>
+              <%end%>
+
+          </td>
+          <td ><%=s["station_code"]%></td>
         </tr>
       <%end%>    
     </tbody>
@@ -31,8 +55,9 @@
 <%else%>
 <div class="error-no-station text-center">
   <h6>
-    No Stations in API do you want to start <%=link_to "create", new_station_path%> a  one ?
+    No Stations in API do you want to <%=link_to "create", new_station_path%> a  one ?
   </h6>
 </div>
   
 <%end%>
+

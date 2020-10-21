@@ -173,6 +173,28 @@ a {
 
 //css overides---------------------------------
 
+.new-to-create{
+  display: inline-flex;
+}
+.upload {
+   cursor: pointer;
+   /* Style as you please, it will become the visible UI component. */
+   font-weight: inherit !important;
+    padding: 10px !important;
+    background: darkgray !important;
+    border: 1px solid black !important;
+    margin-bottom: 0 !important;
+    margin-right: 15px !important;
+}
+.upload-create{
+  margin-right: 0px !important;
+}
+#upload-photo {
+   opacity: 0;
+   position: absolute;
+   z-index: -1;
+}
+
 //paginations
 .apple_pagination {
   background: #f1f1f1;
