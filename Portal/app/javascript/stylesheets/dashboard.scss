@@ -173,6 +173,13 @@ a {
 
 //css overides---------------------------------
 
+.delete-all-trash,.fa-trash-alt{
+  color: red !important;
+}
+
+.index-dele-submit{
+  margin-left: 10px !important;
+}
 .new-to-create{
   display: inline-flex;
 }

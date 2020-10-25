@@ -50,7 +50,7 @@
     end
     
     def find(id)
-      station = TrainStation.new
+     #station = TrainStation.new
      self.class.get("/v1/stations/#{id}")
      
 
@@ -67,7 +67,18 @@
     end
 
     def destroy(id)
-      self.class.delete("/v1/stations/#{id}")
+      headers =  {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        }
+        station = {
+          "id" => id
+        }.to_json
+      self.class.delete("/v1/stations/#{id}",:body => station,:headers => headers)
+
+    
+      
+     
     end
 
   end

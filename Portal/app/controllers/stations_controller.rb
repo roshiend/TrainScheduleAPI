@@ -1,7 +1,7 @@
 class StationsController < ApplicationController
   require 'station'
   require 'will_paginate/array'
-  before_action :find_train_station,only: [:show,:edit,:destroy]
+  before_action :find_train_station,only: [:show,:edit,:update]
   
   def index
     #displying all stations 
@@ -14,13 +14,12 @@ class StationsController < ApplicationController
 
   def create
     @station = TrainStation.new.create(params[:station_name],params[:station_code])
-    #redirect to stations_path(index) if operation perfromed and params saved to api
+    #redirect to stations_path(index) if operation performed and params saved to api
     if @station.success?
       redirect_to stations_path
     else
       render  :new
       puts "redirection upon failure ---------------->>"
-
     end
   end
 
@@ -37,14 +36,14 @@ class StationsController < ApplicationController
   def show
     unless  @station.success?
       render :new
-      puts "redirection upon failure---------------->>"
+      puts @station.response
     end
   end
 
   def edit
     unless @station.success?
      redirect_to new_station_path
-     puts "Cant find page or render !---------------->>"
+     puts @station.response
     end
   end
 
@@ -54,20 +53,21 @@ class StationsController < ApplicationController
       redirect_to stations_path
     else
       render :new
-      puts "redirection upon failure---------------->"
+      
     end
   end
 
   def destroy
+    @station = TrainStation.new.destroy(params[:id])
+    if@station.success?
+     redirect_to stations_path
+    else
+      puts @station.response
+    end
   end
 
   private 
-
    def find_train_station
      @station = TrainStation.new.find(params[:id])
    end
-
-
-   
-  
 end
