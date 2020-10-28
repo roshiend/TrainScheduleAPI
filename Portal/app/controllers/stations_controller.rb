@@ -1,73 +1,73 @@
 class StationsController < ApplicationController
-  require 'station'
   require 'will_paginate/array'
-  before_action :find_train_station,only: [:show,:edit,:update]
+  #require 'trainline'
+  before_action :find_train_station,only: [:show,:edit,:update,:destroy]
   
   def index
-    #displying all stations 
-    @stations = TrainStation.new.all.paginate(page: params[:page],per_page: 10)
+    @stations = Station.all_stations
   end
 
   def new
-    @station  = TrainStation.new()
+    @station = Station.new_station
   end
-
+  
   def create
-    @station = TrainStation.new.create(params[:station_name],params[:station_code])
-    #redirect to stations_path(index) if operation performed and params saved to api
+    @station = Station.create_station(params[:station_name],params[:station_code],params[:trainline_id])
     if @station.success?
       redirect_to stations_path
     else
       render  :new
-      puts "redirection upon failure ---------------->>"
+      puts @station
+
     end
+
   end
 
-  #CSV upload Path
   def import
-    if TrainStation.new.import(params[:file]) == :failed 
+    if Station.import(params[:file]) == :failed 
       render  :new
       puts "CSV operation not success---------------->>"
     else
-      redirect_to stations_path
+      redirect_to stationss_path
     end
   end
 
+
   def show
-    unless  @station.success?
-      render :new
-      puts @station.response
-    end
+   
   end
 
   def edit
-    unless @station.success?
-     redirect_to new_station_path
-     puts @station.response
-    end
+    
   end
 
   def update
-    @station = TrainStation.new.update(params[:station_name],params[:station_code])
+    @station = Station.update_station(params[:station_name],params[:station_code],params[:trainline_id],params[:id])
     if @station.success?
-      redirect_to stations_path
+      redirect_to stations_path(@station)
     else
-      render :new
-      
+      render  :edit
+      puts @station
     end
+
   end
 
   def destroy
-    @station = TrainStation.new.destroy(params[:id])
+    @station = Station.destroy_station(params[:id])
+     
     if@station.success?
      redirect_to stations_path
     else
+      redirect_to stations_path(@station)
       puts @station.response
     end
   end
 
+
+
+
   private 
    def find_train_station
-     @station = TrainStation.new.find(params[:id])
+     @station = Station.find_station(params[:id])
    end
 end

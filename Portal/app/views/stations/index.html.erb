@@ -32,26 +32,26 @@
           <%end%>
           
         </th> 
-        <th style="width:10%">ID</th>
-        <th style="width:30%">STATION NAME</th>
-        <th style="width:20%">STATION CODE</th>
-        <th style="width:40%">ACTIONS</th>
+        <th style="width:10%; text-align: center;">ID</th>
+        <th style="width:30%; text-align: center;">STATION NAME</th>
+        <th style="width:20%; text-align: center;">STATION CODE</th>
+        <th style="width:40%; text-align: center;">ACTIONS</th>
       </tr>
     </thead>
     <tbody>
       <%@stations.each do |station|%>
         <tr>
-          <td><%=check_box_tag "station_ids[]", station["id"]%></td>
-          <td ><%=station["id"]%></td>
-          <td ><%=link_to station_path(station["id"]) do%> 
+          <td class="td-class" style="width:10%; text-align: center;"><%=check_box_tag "station_ids[]", station["id"]%></td>
+          <td class="td-class"style="width:10%; text-align: center;" ><%=station["id"]%></td>
+          <td class="td-class"style="width:10%; text-align: center;" ><%=link_to station_path(station["id"]) do%> 
                 <%=station["station_name"]%>
               <%end%>
 
           </td>
-          <td ><%=station["station_code"]%></td>
-          <td >
-            <div class="inline-actions">
-              <%=link_to edit_station_path(station["id"]) do%> 
+          <td class="td-class"style="width:10%; text-align: center;" ><%=station["station_code"]%></td>
+          <td class="td-class"style="width:10%; text-align: center;" >
+            <div class="inline-actions text-center">
+              <%=link_to edit_station_path(station["id"]),:style=>"margin-right: 15px;" do%> 
                 <i class="fas fa-pen"></i>
               <%end%>
               <%=link_to station_path(station['id']),method: :delete,data: { type: 'json' } do%> 

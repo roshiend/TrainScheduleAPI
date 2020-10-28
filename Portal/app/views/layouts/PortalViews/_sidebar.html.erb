@@ -3,7 +3,7 @@
     
       <div class="text-center">
         <%=link_to root_path do%>
-          <%#=image_tag('logo.svg',:width =>"150px")%>
+          <%=image_tag('logo.svg',:width =>"150px")%>
         <%end%>
       </div>
       
@@ -20,33 +20,33 @@
       </div>
 
       <!-- Sidebar Menu -->
-<%#Catgories%>
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column " data-widget="treeview" role="menu" data-accordion="false"  >
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
+            <%=link_to trainlines_path, class: "nav-link" do%>
+              <i class="fas fa-code-branch nav-icon"></i>
+              <p>
+                Train lines
+                <i class="fas fa-plus-circle right"></i>
+              </p>
+            <%end%>
+          </li>
+        </ul>
+      </nav>
+
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column " data-widget="treeview" role="menu" data-accordion="false"  >
+          <li class="nav-item has-treeview">
+            <%=link_to stations_path, class: "nav-link" do%>
               <i class="fas fa-clipboard-list nav-icon"></i>
               <p>
                 Stations
                 <i class="fas fa-plus-circle right"></i>
               </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <%#=link_to backend_categories_path do%>
-                <li class="nav-item nav-tem-sub" >
-                  All Stations
-                </li>
-              <%#end%>
-              <%#=link_to new_backend_category_path do%>
-                <!-- <li class="nav-item nav-tem-sub">
-                  Create Category
-                </li> -->
-              <%#end%>
-            </ul>
+            <%end%>
           </li>
         </ul>
       </nav>
-<%#sub Catgories%>
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column " data-widget="treeview" role="menu" data-accordion="false"  >
           <li class="nav-item has-treeview">

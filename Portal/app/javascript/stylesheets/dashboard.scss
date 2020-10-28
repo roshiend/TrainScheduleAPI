@@ -173,6 +173,20 @@ a {
 
 //css overides---------------------------------
 
+.notice-add-or-import{
+  border: 1px solid #f012be;
+    padding: 10px;
+    background: #e9ecef;
+    text-align: center;
+}
+
+.table-dark th, .table-dark thead th {
+    border-color: #00203c !important;
+}
+.td-class{
+  color:white !important;
+}
+
 .delete-all-trash,.fa-trash-alt{
   color: red !important;
 }
@@ -366,7 +380,7 @@ box-shadow: 0px 2px 9px -3px rgba(168,168,168,0.77);
 }
 
 .nav-icon{
-  color: #707173 !important;
+  color: #17a2b8 !important;
 }
 
 .nav-tem-sub{

@@ -1,5 +1,5 @@
 
-<%= form_tag stations_path, method: "post", id: "station-form" do %>
+<%= form_tag station_path(@station["id"]), method: "patch", id: "station-form" do %>
 	<div class="col-md-12"> 
 	  <div class="card card-primary card-outline col-md-12">
 	    <div class="card-header">
@@ -8,6 +8,14 @@
 	    </div>
 	    <div class="card-body">
 	      <div class="form-group ">
+	      	 <div class="col-md-12">
+	        	<%if Line.new.all.any?%>
+	        		<%=select_tag 'trainline_id', options_for_select(Line.new.all.map{|line| [line["line_name"],line["id"]]},:selected => @station['trainline_id'] )%>
+	        	<%else%>
+	        		<div class="notice-add-or-import">Please <%=link_to "add", new_trainline_path%> Trainline before continue. <br><%=link_to "Click here",stations_path %> if your are bulk importing </div>
+	        	<%end%>
+	       </div>
+
 	        <label for="fname" class= "col-md-12 col-form-label">Station name:</label>
 	        <div class="col-md-12">
 	        	<%=text_field_tag :station_name, @station["station_name"],class: "form-control", :id => "fname",:placeholder =>"Station name...",required: true%>
@@ -36,4 +44,3 @@
 	  </div>
 	</div>
 <%end%>
-

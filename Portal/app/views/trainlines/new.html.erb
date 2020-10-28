@@ -1,0 +1,30 @@
+
+<%= form_tag trainlines_path, method: "post", id: "station-form" do %>
+	<div class="col-md-12"> 
+	  <div class="card card-primary card-outline col-md-12">
+	    <div class="card-header">
+	      <h5 class="card-title m-0">Create a Train line</h5>
+	      
+	    </div>
+	    <div class="card-body">
+	      <div class="form-group ">
+	        <label for="fname" class= "col-md-12 col-form-label">Train line</label>
+	        <div class="col-md-12">
+	        	<%=text_field_tag :line_name, nil,class: "form-control", :id => "fname",:placeholder =>"Train line ...",required: true%>
+	        	
+	        </div>
+	        <div class="invalid-feedback">
+        		Please provide a station name.
+      		</div>
+	      </div>
+	      
+	      <div class="form-group ">
+	        <div class="col-md-12">
+	        	<button class="btn btn-primary station-form-submit">Submit</button>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+<%end%>
+
