@@ -63,6 +63,13 @@ class TrainlinesController < ApplicationController
   end
 
 
+  def delete_batch_or_selected
+    TrainLine.where(id: params[:trainline_ids]).destroy_all_trainline
+    
+    
+  end
+
+
 
 
   private 

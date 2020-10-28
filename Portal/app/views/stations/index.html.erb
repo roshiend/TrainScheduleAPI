@@ -41,7 +41,7 @@
     <tbody>
       <%@stations.each do |station|%>
         <tr>
-          <td class="td-class" style="width:10%; text-align: center;"><%=check_box_tag "station_ids[]", station["id"]%></td>
+          <td class="td-class" style="width:10%; text-align: left;"><%=check_box_tag "station_ids[]", station["id"]%></td>
           <td class="td-class"style="width:10%; text-align: center;" ><%=station["id"]%></td>
           <td class="td-class"style="width:10%; text-align: center;" ><%=link_to station_path(station["id"]) do%> 
                 <%=station["station_name"]%>

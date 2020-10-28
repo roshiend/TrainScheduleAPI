@@ -14,6 +14,7 @@ import "@fortawesome/fontawesome-free/js/all";
 import "packs/adminlte.min";
 import "packs/OverlayScrollbars.min";
 import "packs/dashboard2";
+import "packs/dashboardfunctions";
 import "packs/eip";
 import $ from 'jquery';
 
