@@ -4,6 +4,7 @@ class TrainlinesController < ApplicationController
   
   def index
     @trainlines = Trainline.all_trainlines
+
   end
 
   def new
@@ -64,8 +65,14 @@ class TrainlinesController < ApplicationController
 
 
   def delete_batch_or_selected
-    TrainLine.where(id: params[:trainline_ids]).destroy_all_trainline
     
+   @trainline= Trainline.destroy_all_trainline(params[:trainline_ids])
+    if @trainline.success?
+      redirect_to trainlines_path
+    else
+      render :index
+      puts @trainline.response
+    end
     
   end
 

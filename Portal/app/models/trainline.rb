@@ -79,17 +79,30 @@ class Trainline<ApplicationRecord
     end
 
 
-    def self.destroy_all_trainline(id)
+    # def self.destroy_all_trainline(trainline_ids)
+    #   headers =  {
+    #       "Content-Type": "application/json",
+    #       "Accept": "application/json"
+    #     }
+    #     trainline = {
+    #       "id" => trainline_ids
+    #     }.to_json
+    #   delete("/v1/trainlines/delete_batch_or_selected",:body => trainline,:headers => headers)
+      
+    # end
+
+     def self.destroy_all_trainline(trainline_ids)
       headers =  {
           "Content-Type": "application/json",
           "Accept": "application/json"
         }
         trainline = {
-          "id" => id
+          "id" => trainline_ids
         }.to_json
-      delete("/v1/trainlines/#{id}",:body => trainline,:headers => headers)
-
+      delete("/v1/trainlines/delete_batch_or_selected/",:body => trainline,:headers => headers)
+      
     end
+    
 
 end
 

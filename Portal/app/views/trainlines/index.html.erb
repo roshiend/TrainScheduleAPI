@@ -26,11 +26,12 @@
     <thead>
       <tr>
        <th style="width:10%">
-        <%#=form_tag delete_batch_or_selected_trainlines_path, method: :delete, data: { confirm: 'Are you sure?' }  do%>
+        <%=form_tag delete_batch_or_selected_trainlines_path, method: :delete, data: { type: 'json', confirm: 'Are you sure?' }  do%>
           <input type="checkbox" id="selectAll" value="selectAll">
-          <%=link_to "#",class: " index-dele-submit" do %>
-            <i class="fas fa-trash-alt delete-all-trash"></i>
-          <%end%>
+          <%=submit_tag "Delete All", class: "btn btn-danger btn-sm index-dele-submit"%>
+          <%#=link_to "#",class: " index-dele-submit" do %>
+            <!-- <i class="fas fa-trash-alt delete-all-trash"></i> -->
+          <%#end%>
           
         </th> 
         <th style="width:5%; text-align: center;">ID</th>
@@ -45,8 +46,8 @@
         
         <tr>
           
-            <td class="td-class" style="width:10%; text-align: left;"><%=check_box_tag "trainline_id[]", trainline["id"]%></td>
-        <%#end%>
+            <td class="td-class" style="width:10%; text-align: left;"><%=check_box_tag "trainline_ids[]", trainline["id"]%></td>
+        
           <td class="td-class"style="width:10%; text-align: center;" ><%=trainline["id"]%></td>
           <td class="td-class"style="width:10%; text-align: center;" ><%=link_to trainline_path(trainline["id"]) do%> 
                 <%=trainline["line_name"]%>
@@ -74,6 +75,7 @@
           </td>
           
         </tr>
+        <%end%>
       <%end%>    
     </tbody>
   </table>
