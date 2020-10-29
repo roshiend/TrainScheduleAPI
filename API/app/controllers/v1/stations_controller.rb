@@ -38,9 +38,10 @@ class V1::StationsController < ApplicationController
 
   def destroy
     @station.destroy
+  end
 
-
-    #render json: { status: 'SUCCESS', message: 'deleted the post', data: @station }
+  def delete_batch_or_selected
+      Station.where(params[:station_ids]).destroy_all
   end
   
   private

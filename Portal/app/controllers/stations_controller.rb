@@ -63,6 +63,18 @@ class StationsController < ApplicationController
     end
   end
 
+  def delete_batch_or_selected
+    
+   @station= Station.destroy_all_stations(params[:station_ids])
+    if @station.success?
+      redirect_to stations_path
+    else
+      render :index
+      puts @station.response
+    end
+    
+  end
+
 
 
 

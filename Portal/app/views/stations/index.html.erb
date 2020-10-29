@@ -26,10 +26,12 @@
     <thead>
       <tr>
        <th style="width:10%">
+        <%=form_tag delete_batch_or_selected_stations_path, method: :delete  do%>
           <input type="checkbox" id="selectAll" value="selectAll">
-          <%=link_to "#",class: " index-dele-submit" do %>
-            <i class="fas fa-trash-alt delete-all-trash"></i>
-          <%end%>
+          <%=submit_tag "Delete All", class: "btn btn-danger btn-sm index-dele-submit",data: {confirm: 'This will delete all stations! Do you want to continue? ' } %>
+          <%#=link_to "#",class: " index-dele-submit" do %>
+            <!-- <i class="fas fa-trash-alt delete-all-trash"></i> -->
+          <%#end%>
           
         </th> 
         <th style="width:10%; text-align: center;">ID</th>
@@ -41,7 +43,7 @@
     <tbody>
       <%@stations.each do |station|%>
         <tr>
-          <td class="td-class" style="width:10%; text-align: left;"><%=check_box_tag "station_ids[]", station["id"]%></td>
+          <td class="td-class" style="width:10%; text-align: left;"><%=check_box_tag "station_id[]", station["id"]%></td>
           <td class="td-class"style="width:10%; text-align: center;" ><%=station["id"]%></td>
           <td class="td-class"style="width:10%; text-align: center;" ><%=link_to station_path(station["id"]) do%> 
                 <%=station["station_name"]%>
@@ -61,7 +63,8 @@
             </div>
           </td>
         </tr>
-      <%end%>    
+      <%end%>
+      <%end%>     
     </tbody>
   </table>
   <%unless@stations.count<10%>

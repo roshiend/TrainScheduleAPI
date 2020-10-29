@@ -1,12 +1,9 @@
 class V1::TrainlinesController < ApplicationController
 	before_action :find_trainline,only:[:show,:edit,:update,:destroy]
 	def index 
-	@trainlines = Trainline.all
-	if !Trainline.nil?
-    	render json: @trainlines,:include =>:stations
-    else
-    	render json: :no_content
-	end
+		@trainlines = Trainline.all
+		render json: @trainlines,:include =>:stations
+    
 	end
 
 	def create
@@ -37,9 +34,7 @@ class V1::TrainlinesController < ApplicationController
 
 	def delete_batch_or_selected
 	    Trainline.where(params[:trainline_ids]).destroy_all
-	    
-	    
-
+	
 	end
 
 

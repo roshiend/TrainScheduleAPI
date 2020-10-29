@@ -76,11 +76,24 @@ class Station<ApplicationRecord
           "Content-Type": "application/json",
           "Accept": "application/json"
         }
-        trainline = {
+        station = {
           "id" => id
         }.to_json
-      delete("/v1/stations/#{id}",:body => trainline,:headers => headers)
+      delete("/v1/stations/#{id}",:body => station,:headers => headers)
 
+    end
+
+     #find by selected ids then perfrom batch delete
+    def self.destroy_all_stations(station_ids)
+      headers =  {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        }
+        station = {
+          "id" => station_ids
+        }.to_json
+      delete("/v1/stations/delete_batch_or_selected/",:body => station,:headers => headers)
+      
     end
 
     	
