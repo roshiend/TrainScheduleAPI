@@ -1,52 +1,87 @@
-
-<%= form_tag stations_path, method: "post", id: "station-form" do %>
-	<div class="col-md-12"> 
-	  <div class="card card-primary card-outline col-md-12">
-	    <div class="card-header">
-	      <h5 class="card-title m-0">Create a Station</h5>
-	      
-	    </div>
-	    <div class="card-body">
-	    	<div class="form-group ">
-	        <label for="fname" class= "col-md-12 col-form-label">Select Train Line:</label>
-	        <div class="col-md-12">
-	        	<%if Trainline.all_trainlines.any?%>
-	        		<%=select_tag 'trainline_id', options_for_select(Trainline.all_trainlines.map{|line| [line["line_name"],line["id"]]})%>
-	        	<%else%>
-	        		<div class="notice-add-or-import">Please <%=link_to "add", new_trainline_path%> Trainline before continue. <br><%=link_to "Click here",stations_path %> if your are bulk importing </div>
-	        	<%end%>
-	       </div>
-	        <div class="invalid-feedback">
-        		Please provide a Trainline.
-      		</div>
-	      </div>
-	      <div class="form-group ">
-	        <label for="fname" class= "col-md-12 col-form-label">Station name:</label>
-	        <div class="col-md-12">
-	        	<%=text_field_tag :station_name, nil,class: "form-control", :id => "fname",:placeholder =>"Station name...",required: true%>
-	        	
-	        </div>
-	        <div class="invalid-feedback">
-        		Please provide a station name.
-      		</div>
-	      </div>
-	      <div class="form-group ">
-	        <label for="fname" class= "col-md-12 col-form-label">Station code:</label>
-	        <div class="col-md-12">
-	        	
-	        	<%=text_field_tag :station_code, nil,class: "form-control", :id => "fname",:placeholder =>"Station name...",required: true%>
-	        </div>
-	        <div class="invalid-feedback">
-        		Please provide a station code.
-      		</div>
-	      </div>
-	      <div class="form-group ">
-	        <div class="col-md-12">
-	        	<button class="btn btn-primary station-form-submit">Submit</button>
-	        </div>
-	      </div>
-	    </div>
-	  </div>
+<div class="row">
+	<div class="col-md-7">
+		<%= form_tag stations_path, method: "post", id: "station-form",multipart: true do %>
+	
+			<div class="col-md-12"> 
+			  <div class="card card-primary card-outline col-md-12">
+			    <div class="card-header">
+			      <h5 class="card-title m-0">Create a Station</h5>
+			      
+			    </div>
+			    <div class="card-body">
+			    	<div class="form-group ">
+			        <label for="fname" class= "col-md-12 col-form-label">Select Train Line:</label>
+			        <div class="col-md-12">
+			        	<%if Trainline.all_trainlines.any?%>
+			        		<%=select_tag 'trainline_id', options_for_select(Trainline.all_trainlines.map{|line| [line["line_name"],line["id"]]}),class: "form-control"%>			        
+			        	<%else%>
+			        		<div class="notice-add-or-import">Please <%=link_to "add", new_trainline_path%> Trainline before continue. <br><%=link_to "Click here",stations_path %> if your are bulk importing </div>
+			        	<%end%>
+			       </div>
+			        <div class="invalid-feedback">
+		        		Please provide a Trainline.
+		      		</div>
+			      </div>
+			      <div class="form-group ">
+			        
+			        <div class="col-md-12">
+			        	<%=text_field_tag :station_name, nil,class: "form-control", :id => "fname",:placeholder =>"Station name...",required: true%>
+			        	
+			        </div>
+			       
+			      </div>
+			      <div class="form-group ">
+			        <div class="col-md-12">
+			        	
+			        	<%=text_field_tag :station_code, nil,class: "form-control", :id => "fname",:placeholder =>"Station name...",required: true%>
+			        </div>
+			        
+			      </div>
+			      <div class="form-group ">
+			        <div class="col-md-12">
+			        	<button class="btn btn-primary station-form-submit">Submit</button>
+			        </div>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+		<%end%>
 	</div>
-<%end%>
+	<div class="col-md-5"> 
+  <div class="card card-primary card-outline col-md-12">
+    <div class="card-header">
+      <h5 class="card-title m-0">Import stations to this Trainline</h5>
+    </div>
+    <div class="card-body">
+    	<div class="form-group ">
+        <div class="col-md-12">
+        	<%if Trainline.all_trainlines.any?%>
+						<div class="col-md-12"> 
+							<%if Trainline.all_trainlines.any?%>
+								<%= form_tag import_stations_path, id: "station-form",  multipart: true do %>
+								  
+								  <div class= text-center>
+								  	<%=select_tag 'trainline_id', options_for_select(Trainline.all_trainlines.map{|line| [line["line_name"],line["id"]]},:selected => @station['trainline_id'] ),class: "form-control"%><br>
+								    <%=file_field_tag :file, :onchange => "this.form.submit()", :id  => "upload-photo" %>
+								    <label for="upload-photo" class ="upload"><span><i class="fas fa-arrow-alt-circle-up"></i> Import stations </span></label>
+								  </div>
+								<%end%>
+							<%end%>
+						</div>
+					<%end%>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+		
+</div>
+
+
+
+
+
+
+
 

@@ -2,13 +2,8 @@
   <div class="row">
     <div class="col-md-12">
       <div class="new-to-create float-right">
-
-        <%= form_tag import_stations_path, id: "station-form",  multipart: true do %>
-          <label for="upload-photo" class ="upload"><span><i class="fas fa-arrow-alt-circle-up"></i> Import</span></label>
-          <div class= text-left>
-            <%=file_field_tag :file, :onchange => "this.form.submit()", :id  => "upload-photo" %>
-          </div>
-        <%end%>
+        
+        
         <%=link_to  new_station_path do %>
           <h5 class= "upload upload-create"><span><i class="fas fa-clipboard-list nav-icon"></i>  New Station</span></h5>
         <%end%>

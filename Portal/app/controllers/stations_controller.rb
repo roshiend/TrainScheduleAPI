@@ -4,7 +4,8 @@ class StationsController < ApplicationController
   before_action :find_train_station,only: [:show,:edit,:update,:destroy]
   
   def index
-    @stations = Station.all_stations
+    @stations = Station.all_stations.paginate(page: params[:page],per_page: 10)
+    
   end
 
   def new
@@ -24,11 +25,11 @@ class StationsController < ApplicationController
   end
 
   def import
-    if Station.import(params[:file]) == :failed 
+    if Station.import(params[:file],params[:trainline_id]) == :failed 
       render  :new
       puts "CSV operation not success---------------->>"
     else
-      redirect_to stationss_path
+      redirect_to stations_path
     end
   end
 

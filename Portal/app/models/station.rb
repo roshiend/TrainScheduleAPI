@@ -15,6 +15,7 @@ class Station<ApplicationRecord
     	get(base_uri)
     end
 
+   
      #create station. Parent exisit must !
     def self.create_station(station_name,station_code,trainline_id)
       headers =  {
@@ -33,7 +34,7 @@ class Station<ApplicationRecord
 
 
     #import csv
-    def self.import(file)
+    def self.import(file,trainline_id)
       
       CSV.foreach(file.path, headers: true) do |row|
         
@@ -42,11 +43,13 @@ class Station<ApplicationRecord
           "Accept": "application/json"
         }
        station = {
-          "station_name" => station_name,
-          "station_code" => station_code
+          "trainline_id" => trainline_id,
+          "station_name" => row[0],
+          "station_code" => row[1]
       }.to_json
         #puts "------#{row}------"
-        post("/v1/stations",:body => trainline,:headers => headers)
+        post("/v1/stations",:body => station,:headers => headers)
+
       end
     end
 

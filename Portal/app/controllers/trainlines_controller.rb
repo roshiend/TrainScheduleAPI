@@ -3,7 +3,7 @@ class TrainlinesController < ApplicationController
   before_action :find_trainline,only: [:show,:edit,:update,:destroy]
   
   def index
-    @trainlines = Trainline.all_trainlines
+    @trainlines = Trainline.all_trainlines.paginate(page: params[:page],per_page: 10)
 
   end
 

@@ -2,13 +2,15 @@
   <div class="row">
     <div class="col-md-12">
       <div class="new-to-create float-right">
-
-        <%= form_tag import_trainlines_path, id: "station-form",  multipart: true do %>
-          <label for="upload-photo" class ="upload"><span><i class="fas fa-arrow-alt-circle-up"></i> Import</span></label>
-          <div class= text-left>
-            <%=file_field_tag :file, :onchange => "this.form.submit()", :id  => "upload-photo" %>
-          </div>
-        <%end%>
+        <%#import csv%>
+          <%= form_tag import_trainlines_path, id: "station-form",  multipart: true do %>
+            <label for="upload-photo" class ="upload"><span><i class="fas fa-arrow-alt-circle-up"></i> Import</span></label>
+            <div class= text-left>
+              <%=file_field_tag :file, :onchange => "this.form.submit()", :id  => "upload-photo" %>
+            </div>
+          <%end%>
+        <%#endof%>
+        
         <%=link_to  new_trainline_path do %>
           <h5 class= "upload upload-create"><span><i class="fas fa-clipboard-list nav-icon"></i>  New Trainline</span></h5>
         <%end%>
