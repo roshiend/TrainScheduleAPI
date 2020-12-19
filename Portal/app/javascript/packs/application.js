@@ -20,26 +20,27 @@ import $ from 'jquery';
 
 window.jQuery = $;
 window.$ = $;
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
 
+global.toastr = require("toastr")
+
+toastr.options = {
+	"positionClass": "toast-bottom-right",
+	
+}
 
 $(document).on('turbolinks:load',function() {
 	
 		
-	 $('.editable').jinplace();
+	 $('.editable').jinplace({
+	 	
+	 });
 
 
    
-  //   const doAjax = (ev) => {
-  //   	$.ajax({
-	 //  url: "/v1/trainlines.json",
-	 //  type: "POST",
-	 //  data: "first_name=Ricky&last_name=Bobby",
-	 //   success: function(data) {
-	 //    console.log(data);
-	 //  }
-		// });
-  //   }
-    
+  
 });
 
 

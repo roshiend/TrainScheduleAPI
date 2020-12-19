@@ -90,6 +90,18 @@ class Trainline<ApplicationRecord
       delete("/v1/trainlines/delete_batch_or_selected/",:body => trainline,:headers => headers)
       
     end
+
+
+    def self.inline_update(value,id)
+      headers =  {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      }
+      trainline = {
+          "line_name" => line_name
+      }.to_json
+      patch("/v1/trainlines/#{id}",:body => trainline,:headers => headers)
+    end
     
 
 end

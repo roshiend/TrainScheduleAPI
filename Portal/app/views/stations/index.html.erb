@@ -32,7 +32,8 @@
         <th style="width:10%; text-align: center;">ID</th>
         <th style="width:30%; text-align: center;">STATION NAME</th>
         <th style="width:20%; text-align: center;">STATION CODE</th>
-        <th style="width:40%; text-align: center;">ACTIONS</th>
+        
+        <th style="width:20%; text-align: center;">ACTIONS</th>
       </tr>
     </thead>
     <tbody>
@@ -46,6 +47,7 @@
 
           </td>
           <td class="td-class"style="width:10%; text-align: center;" ><%=station["station_code"]%></td>
+
           <td class="td-class"style="width:10%; text-align: center;" >
             <div class="inline-actions text-center">
               <%=link_to edit_station_path(station["id"]),:style=>"margin-right: 15px;" do%> 

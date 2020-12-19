@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2020_10_26_160159) do
   enable_extension "plpgsql"
 
   create_table "stations", force: :cascade do |t|
-    t.integer "trainline_id"
+    t.integer "trainline_id", null: false
     t.string "station_name", null: false
     t.string "station_code", null: false
     t.datetime "created_at", precision: 6, null: false

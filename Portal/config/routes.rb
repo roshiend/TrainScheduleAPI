@@ -13,6 +13,10 @@ Rails.application.routes.draw do
       collection do
         delete 'delete_batch_or_selected'
       end
+      collection do
+        patch 'inline_update'
+      end
+
 
     end
   	

@@ -3,7 +3,7 @@ class V1::TrainlinesController < ApplicationController
 	def index 
 		@trainlines = Trainline.all
 		render json: @trainlines,:include =>:stations
-    
+    	
 	end
 
 	def create

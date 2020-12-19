@@ -12,7 +12,7 @@ class Station<ApplicationRecord
     
     #init new station not important
     def self.new_station
-    	get(base_uri)
+    	get('/stations/new')
     end
 
    
@@ -32,24 +32,29 @@ class Station<ApplicationRecord
     end
 
 
-
+    
     #import csv
     def self.import(file,trainline_id)
+      if trainline_id.blank?
+        #new_station
+       puts "train line empty...................................."
+      else
       
-      CSV.foreach(file.path, headers: true) do |row|
-        
-        headers =  {
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        }
-       station = {
-          "trainline_id" => trainline_id,
-          "station_name" => row[0],
-          "station_code" => row[1]
-      }.to_json
-        #puts "------#{row}------"
-        post("/v1/stations",:body => station,:headers => headers)
+        CSV.foreach(file.path, headers: true) do |row|
+          
+          headers =  {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+          }
+         station = {
+            "trainline_id" => trainline_id,
+            "station_name" => row[0],
+            "station_code" => row[1]
+        }.to_json
+          #puts "------#{row}------"
+          post("/v1/stations",:body => station,:headers => headers)
 
+        end
       end
     end
 
@@ -98,6 +103,9 @@ class Station<ApplicationRecord
       delete("/v1/stations/delete_batch_or_selected/",:body => station,:headers => headers)
       
     end
+
+
+
 
     	
     

@@ -2,6 +2,8 @@ class Trainline < ApplicationRecord
 	has_many :stations, :dependent => :destroy
 	before_save :upcase_trainline_attibutes
 
+	default_scope { order("created_at ASC") }
+
 	def upcase_trainline_attibutes
          if line_name.present?
 			(line_name.upcase!)

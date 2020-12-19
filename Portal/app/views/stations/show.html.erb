@@ -1,3 +1,47 @@
+<%= form_tag station_path(@station['id']),method: :patch, id: "station-form" do %>
+	<div class="col-md-8 new-station-col"> 
+	  <div class="card card-primary card-outline col-md-12">
+	    <div class="card-header">
+	      <h5 class="card-title m-0"><i class="fas fa-code-branch nav-icon"></i> Train Line</h5>
+	      
+	    </div>
+	    <div class="card-body">
+	      <div class="form-group ">
+	      	 <div class="col-md-12">
+	        	<%if Trainline.all_trainlines.any?%>
+	        		<%=select_tag 'trainline_id', options_for_select(Trainline.all_trainlines.map{|line| [line["line_name"],line["id"]]},:selected => @station['trainline_id'] )%>
+	        	<%else%>
+	        		<div class="notice-add-or-import">Please <%=link_to "add", new_trainline_path%> Trainline before continue. <br><%=link_to "Click here",stations_path %> if your are bulk importing </div>
+	        	<%end%>
+	       </div>
 
-<br><br><br><br><br><br><br><br><br><br><br>
-<%=@station["station_name"]%>
+	        <label for="fname" class= "col-md-12 col-form-label">Station name:</label>
+	        <div class="col-md-12">
+	        	<%=text_field_tag :station_name, @station["station_name"],class: "form-control", :id => "fname",:placeholder =>"Station name...",required: true%>
+	        	
+	        <div class="invalid-feedback">
+        		Please provide a station name.
+      		</div>
+	      </div>
+	      <div class="form-group ">
+	        <label for="fname" class= "col-md-12 col-form-label">Station code:</label>
+	        <div class="col-md-12">
+	        	
+	        	<%=text_field_tag :station_code, @station["station_code"],class: "form-control", :id => "fname",:placeholder =>"Station name...",required: true%>
+	        	
+	        </div>
+	        <div class="invalid-feedback">
+        		Please provide a station code.
+      		</div>
+	      </div>
+	      <div class="form-group ">
+	        <div class="col-md-12">
+	        	<button class="btn btn-primary station-form-submit">Submit</button>
+	        </div>
+	      </div>
+	    </div>	      
+	    </div>
+	  </div>
+	</div>
+	
+<%end%>

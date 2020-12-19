@@ -172,6 +172,30 @@ a {
 }
 
 //css overides---------------------------------
+#fname{
+  border: none;
+}
+
+.table th, .table td {
+  padding-top: 3px !important;
+    padding-bottom: 3px !important;
+}
+
+.table-dark td, .table-dark th, .table-dark thead th {
+    border-color: #050f17 !important;
+}
+.help-card-title{
+  font-size: 11px !important;
+  font-weight:  100 !important;
+  text-decoration: underline;
+  text-decoration-style:dotted;
+}
+
+.new-station-col{
+  position: relative !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+}
 
 .notice-add-or-import{
   border: 1px solid #f012be;
@@ -199,14 +223,30 @@ a {
 }
 .upload {
    cursor: pointer;
-   /* Style as you please, it will become the visible UI component. */
+  
    font-weight: inherit !important;
     padding: 10px !important;
     background: darkgray !important;
     border: 1px solid black !important;
     margin-bottom: 0 !important;
     margin-right: 15px !important;
+    float: right!important;
+     margin-top: -5px!important;
 }
+
+.upload-stations{
+   z-index: 2 !important;
+  font-size: 11px !important;
+    color: blue !important;
+    font-weight: 100 !important;
+    float: right !important;
+    cursor: pointer !important;
+    text-decoration: underline;
+  text-decoration-style:dotted;
+  position: none !important;
+}
+
+
 .upload-create{
   margin-right: 0px !important;
 }
@@ -215,6 +255,13 @@ a {
    position: absolute;
    z-index: -1;
 }
+
+#upload-stations {
+   opacity: 0;
+   position: none;
+   z-index: -1;
+}
+
 
 //paginations
 .apple_pagination {

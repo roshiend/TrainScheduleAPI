@@ -16,8 +16,10 @@ class StationsController < ApplicationController
     @station = Station.create_station(params[:station_name],params[:station_code],params[:trainline_id])
     if @station.success?
       redirect_to stations_path
+      flash[:notice] = "Action Completed !"
     else
       render  :new
+      flash[:alert] = "Cannot perform action"
       puts @station
 
     end
@@ -25,12 +27,19 @@ class StationsController < ApplicationController
   end
 
   def import
-    if Station.import(params[:file],params[:trainline_id]) == :failed 
-      render  :new
-      puts "CSV operation not success---------------->>"
+    
+    @import = Station.import(params[:file],params[:trainline_id])
+    if @import.nil?
+      redirect_to new_station_path
+      puts "Train line must select before import...."
+      flash[:alert] = "Make sure Train line is selected before import"
     else
       redirect_to stations_path
+      flash[:notice] = "Action Completed !"
     end
+    
+
+    
   end
 
 
@@ -46,8 +55,10 @@ class StationsController < ApplicationController
     @station = Station.update_station(params[:station_name],params[:station_code],params[:trainline_id],params[:id])
     if @station.success?
       redirect_to stations_path(@station)
+      flash[:notice] = "Update Completed !"
     else
       render  :edit
+      flash[:alert] = "Update not successful !"
       puts @station
     end
 
@@ -58,9 +69,11 @@ class StationsController < ApplicationController
      
     if@station.success?
      redirect_to stations_path
+     flash[:notice] = "Station Removed !"
     else
       redirect_to stations_path(@station)
       puts @station.response
+      flash[:alert] = "Station not Removed,Try again?"
     end
   end
 
@@ -69,9 +82,11 @@ class StationsController < ApplicationController
    @station= Station.destroy_all_stations(params[:station_ids])
     if @station.success?
       redirect_to stations_path
+      flash[:notice] = "Selected Stations are removed !"
     else
       render :index
       puts @station.response
+      flash[:alert] = "Selected Stations are not Removed,Try again?"
     end
     
   end

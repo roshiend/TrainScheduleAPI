@@ -1,0 +1,27 @@
+
+
+<!-- Site wrapper -->
+<div class="wrapper" >
+  <%=render "layouts/portal/top_nav"%>
+  <%=render "layouts/portal/sidebar"%>
+
+  <div class="content-wrapper">
+    <div class="content-header">
+      <div class="container-fluid">
+        <%=render "layouts/portal/breadcumbs"%>
+        <div class="row">
+          <div class="container">
+            <%=yield%>
+            <%=render 'layouts/portal/backend_flash'%>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+ <%#=render "layouts/backend/footer"%>
+  
+</div>
+<!-- ./wrapper -->
+
+

@@ -1,6 +1,6 @@
 
 
-<%= form_tag trainline_path(@line["id"]),method: :patch, id: "station-form" do %>
+<%#= form_tag trainline_path(@trainline['id']),method: :post, id: "station-form" do %>
 	<div class="col-md-12"> 
 	  <div class="card card-primary card-outline col-md-12">
 	    <div class="card-header">
@@ -11,11 +11,7 @@
 	      <div class="form-group ">
 	        
 	        <div class="col-md-12">
-	        	<!-- <span class="editable"data-method="patch"data-type="JSON"data-url="<%=trainline_path@line['id']%>">
-	        		<%#=:line_name%>
-	        			
-	        	</span> -->
-	        	
+	        	<span class="editable"data-url="<%=trainline_path(@trainline['id'])%>"data-method="patch" data-type="text"><%=@trainline['line_name']%></span>
 	        </div>
 	        
 	      </div>
@@ -25,8 +21,22 @@
 	  </div>
 	</div>
 	
-<%end%>
+<%#end%>
 
 
 	
 
+<script type="text/javascript">
+	$('.editable').jinplace({
+	submitFunction: function(opts, value) {
+		return $.ajax(opts.url, {
+					type: "patch",
+					data: {
+					   
+					    line_name: value
+					},
+					
+				});
+	}
+	});
+</script>

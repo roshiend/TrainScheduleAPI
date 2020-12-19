@@ -14,19 +14,15 @@ $(document).on('turbolinks:load',function() {
         });
       } 
   });
-  // $('#train_line_ids_').click(function() {
-  //   if $("#selectAll").checked=false && this.checked{
-  //     $(".index-dele-submit").show();
-  //   }
+ 
+ //get select option id to pass in to hidden trainline_id  
+  $(function(){
+    $(document).on('change','.hidden-select-value-to', function(){
+       var select_value = $(this).val();
+       $('.hidden-select-value').val(select_value);
 
-  //   else if($("#selectAll").checked=true && this.checked){
-  //     $(".index-dele-submit").show();
-  //   }
-  //   else{
-  //     $(".index-dele-submit").hide();
-  //   }
-  // });
-
+    });
+  });
   
 });
 
