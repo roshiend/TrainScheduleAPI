@@ -42,6 +42,24 @@
                       <%=text_field_tag :station_code, nil,class: "form-control", :id => "fname1",:placeholder =>"Station code...",required: true%>
                     </div>
                 </div>
+                <h6>this station has transit--</h6>
+                <%#=form_tag transits_path, method: "post", id: "station-form",multipart: true do%>
+                  <div class="form-group">
+                    <div class="col-md-12">
+                      <%=select_tag 'changes_to_id', options_for_select(Trainline.all_trainlines.map{|line| [line["line_name"],line["id"]]}),class: "form-control hidden-select-value-to", :prompt => "Select Transits",required: false,multiple: true%>
+                    </div>
+
+                  
+                  </div>
+                <%#end%>
+
+
+
+
+
+
+
+                
                 <br>
 
 					      <div class="form-group float-right ">
@@ -51,6 +69,7 @@
 					        </div>
 					      </div>
     		  		<%end%>
+
     		  	</div>
     		  	
   		  			

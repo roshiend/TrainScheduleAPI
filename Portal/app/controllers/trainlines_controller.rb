@@ -4,6 +4,9 @@ class TrainlinesController < ApplicationController
   
   def index
     @trainlines = Trainline.all_trainlines.paginate(page: params[:page],per_page: 10)
+    # if !@trainlines.nil?
+    #   @trainlines = Trainline.all_trainlines
+    # end
 
   end
 

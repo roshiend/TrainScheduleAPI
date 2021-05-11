@@ -51,6 +51,6 @@ class V1::StationsController < ApplicationController
     end
 
     def station_params
-     params.require(:station).permit(:station_name, :station_code,:trainline_id)
+     params.require(:station).permit(:station_name, :station_code,:trainline_id,changes_to_id:[])
     end
 end

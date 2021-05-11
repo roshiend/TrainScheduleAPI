@@ -5,6 +5,9 @@ Rails.application.routes.draw do
       collection do
         delete 'delete_batch_or_selected'
       end
+      collection do
+        resources :transits
+      end
   	end
 
 

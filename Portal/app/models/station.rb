@@ -17,7 +17,7 @@ class Station<ApplicationRecord
 
    
      #create station. Parent exisit must !
-    def self.create_station(station_name,station_code,trainline_id)
+    def self.create_station(station_name,station_code,trainline_id,changes_to_id)
       headers =  {
           "Content-Type": "application/json",
           "Accept": "application/json"
@@ -26,7 +26,8 @@ class Station<ApplicationRecord
        station = {
           "trainline_id" => trainline_id.to_s,
           "station_name" => station_name,
-          "station_code" => station_code
+          "station_code" => station_code,
+          "changes_to_id" => changes_to_id
       }.to_json
       post("/v1/stations",:body => station,:headers => headers)
     end

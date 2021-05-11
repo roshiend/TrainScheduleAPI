@@ -13,7 +13,7 @@ class StationsController < ApplicationController
   end
   
   def create
-    @station = Station.create_station(params[:station_name],params[:station_code],params[:trainline_id])
+    @station = Station.create_station(params[:station_name],params[:station_code],params[:trainline_id],params[:changes_to_id])
     if @station.success?
       redirect_to stations_path
       flash[:notice] = "Action Completed !"

@@ -4,7 +4,8 @@ class Station < ApplicationRecord
 	
 	default_scope { order("created_at ASC") }
 
-	has_many :changes_to_trainline
+	
+
 
 private
 

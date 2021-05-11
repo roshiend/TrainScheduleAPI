@@ -1,9 +1,11 @@
 class V1::TrainlinesController < ApplicationController
 	before_action :find_trainline,only:[:show,:edit,:update,:destroy]
 	def index 
+
 		@trainlines = Trainline.all
-		render json: @trainlines,:include =>:stations
-    	
+		if !@trainlines.nil?
+			render json: @trainlines,:include =>:stations
+    	end
 	end
 
 	def create

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_26_160159) do
+ActiveRecord::Schema.define(version: 2020_12_19_154437) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,12 +19,20 @@ ActiveRecord::Schema.define(version: 2020_10_26_160159) do
     t.integer "trainline_id", null: false
     t.string "station_name", null: false
     t.string "station_code", null: false
+    t.integer "changes_to_id", default: [], array: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "trainlines", force: :cascade do |t|
     t.string "line_name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "transits", force: :cascade do |t|
+    t.integer "changes_to_id"
+    t.integer "station_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
